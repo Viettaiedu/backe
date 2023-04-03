@@ -2,7 +2,7 @@ const db = require("../db");
 const moment = require('moment');
 
 const getChats = (req,res) => {
-    const q = "SELECT * FROM messenges WHERE conversationId = ? ";
+    const q = "SELECT distinct senderId , text , conversationId , createdAt FROM messenges WHERE conversationId = ? ";
     db.query(q , [req.params.conversationId] , (err,data) => {
         if(err) return res.status(500).json({message:"Error when getting messenges",error:err});
         res.status(200).json(data);

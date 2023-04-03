@@ -12,8 +12,8 @@ const getUserFriends = (req, res) => {
 };
 
 const getUserOthers = (req, res) => {
-  const q = `SELECT distinct u.id , u.email,u.firstName,u.lastName,u.profilePic , u.coverPic , u.createdAt FROM users AS u WHERE u.id NOT IN ( SELECT u.id FROM users AS u JOIN friends AS f ON (u.id=f.userId_1 OR u.id = userId_2) WHERE (userId_1 = ? OR userID_2 = ?))`;
-  db.query(q, [req.query.id, req.query.id], (err, data) => {
+  const q = `SELECT distinct u.id , u.email,u.firstName,u.lastName,u.profilePic , u.coverPic , u.createdAt FROM users AS u WHERE u.id NOT IN ( SELECT u.id FROM users AS u JOIN friends AS f ON (u.id=f.userId_1 OR u.id = userId_2) WHERE (userId_1 = ? OR userID_2 = ?)) AND u.id <> ?`;
+  db.query(q, [req.query.id, req.query.id , req.userInfo.id], (err, data) => {
     if (err)
       return res
         .status(404)
