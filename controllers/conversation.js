@@ -21,7 +21,16 @@ const addConversation = (req,res) => {
       })
   })
 }
+
+const getConversation = (req,res) => {
+  const q ="SELECT * FROM conversations WHERE id = ?";
+  db.query(q ,[req.params.conversationId] , (err,data) => {
+    if(err) return res.status(500).json({message:"Error when getting conversation by" + id , error:err});
+    res.status(200).json(data);
+  })
+}
 module.exports = {
   getConversations,
-  addConversation
+  addConversation,
+  getConversation
 };
