@@ -37,6 +37,7 @@ const routesFriendsRequest = require('./routes/friendsRequest');
 const routesInfos = require('./routes/info');
 const routesConversations = require('./routes/conversations');
 const routesMessenges = require('./routes/messenges');
+const routesNotifications = require('./routes/notifications');
 
 
 
@@ -51,6 +52,7 @@ app.use('/api/upload' , routesUpload);
 app.use('/api/friends-request' , routesFriendsRequest);
 app.use('/api/infos' , routesInfos);
 app.use('/api/conversations' , routesConversations);
+app.use('/api/notifications' , routesNotifications);
 app.use('/api/messenges' , routesMessenges);
 const PORT =  5500;
 
