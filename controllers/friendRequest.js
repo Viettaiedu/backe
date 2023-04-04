@@ -11,9 +11,9 @@ const getUsersRequest = (req,res) => {
 const addFriendsToRequest = (req,res) => {
     const q1 = 'INSERT INTO friendsRequest(`senderUserId`,`receiverUserId` , `createdAt`) VALUES(?);';
     const date = moment().locale('vi').format('YYYY-MM-DD HH:mm:ss');
-    const values = [req.userInfo.id , req.body.receiverUserId , date];
+    const values = [req.body.senderUserId , req.body.receiverUserId , date];
     const q2 = "SELECT * FROM friendsRequest WHERE senderUserId  = ? AND receiverUserId = ?";
-    db.query(q2,[req.userInfo.id , req.body.receiverUserId ],(err,data) => {
+    db.query(q2,[req.body.senderUserId  , req.body.receiverUserId ],(err,data) => {
         if(err) return res.status(404).json({message:"Error check friends request" ,error:err});
         if(data.length >= 1 )  return res.status(404).json({message:"have already done" ,error:err});
         db.query(q1, [values] , (err,data) => {
