@@ -41,7 +41,7 @@ const routesNotifications = require("./routes/notifications");
 //   next();
 // });
 app.use(cors({
-  origin:'*',
+  origin:'http://localhost:3000',
   credentials :true
 }));
 app.use(bodyParser.json());
