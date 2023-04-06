@@ -3,26 +3,6 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//     credentials: true,
-//     // optionSuccessStatus: 200,
-//   })
-// );
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Max-Age", "1800");
-  res.setHeader("Access-Control-Allow-Headers", "content-type");
-  res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS");
-  next();
-});
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-
 const routesAuth = require("./routes/auth");
 const routesUsers = require("./routes/users");
 const routesComments = require("./routes/comments");
@@ -36,7 +16,18 @@ const routesInfos = require("./routes/info");
 const routesConversations = require("./routes/conversations");
 const routesMessenges = require("./routes/messenges");
 const routesNotifications = require("./routes/notifications");
-
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// app.use(function (req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   res.setHeader("Access-Control-Max-Age", "1800");
+//   res.setHeader("Access-Control-Allow-Headers", "content-type");
+//   res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS");
+//   next();
+// });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
 app.use("/api/auth", routesAuth);
 app.use("/api/users", routesUsers);
 app.use("/api/comments", routesComments);
