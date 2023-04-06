@@ -40,10 +40,10 @@ app.use(function (req, res, next) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   next();
 });
-app.use(cors({
-  origin:'http://localhost:3000',
-  credentials :true
-}));
+// app.use(cors({
+//   origin:'http://localhost:3000',
+//   credentials :true
+// }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
