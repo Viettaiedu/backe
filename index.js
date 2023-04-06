@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const PORT = 5500;
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const routesAuth = require("./routes/auth");
@@ -16,15 +17,15 @@ const routesInfos = require("./routes/info");
 const routesConversations = require("./routes/conversations");
 const routesMessenges = require("./routes/messenges");
 const routesNotifications = require("./routes/notifications");
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-// app.use(function (req, res, next) {
-//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   res.setHeader("Access-Control-Max-Age", "1800");
-//   res.setHeader("Access-Control-Allow-Headers", "content-type");
-//   res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS");
-//   next();
-// });
+// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
@@ -41,6 +42,6 @@ app.use("/api/infos", routesInfos);
 app.use("/api/conversations", routesConversations);
 app.use("/api/notifications", routesNotifications);
 app.use("/api/messenges", routesMessenges);
-const PORT = 5500;
+
 
 app.listen(PORT, () => console.log("listening on port " + PORT));
