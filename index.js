@@ -4,7 +4,6 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const path = require('path');
 const routesAuth = require("./routes/auth");
 const routesUsers = require("./routes/users");
 const routesComments = require("./routes/comments");
@@ -18,35 +17,33 @@ const routesInfos = require("./routes/info");
 const routesConversations = require("./routes/conversations");
 const routesMessenges = require("./routes/messenges");
 const routesNotifications = require("./routes/notifications");
-
-app.use(function (req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  // Request methods you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  // Request headers you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, Content-Type, Accept, Authorization, X-Request-With"
-  );
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  // Pass to next layer of middleware
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  next();
-});
-// app.use(cors({
-//   origin:'http://localhost:3000',
-//   credentials :true
-// }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-
+// app.use(function (req, res, next) {
+//   // Website you wish to allow to connect
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
+//   // Request methods you wish to allow
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//   );
+//   // Request headers you wish to allow
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin, Content-Type, Accept, Authorization, X-Request-With"
+//   );
+//   // Set to true if you need the website to include cookies in the requests sent
+//   // to the API (e.g. in case you use sessions)
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+//   // Pass to next layer of middleware
+//   res.setHeader("Content-Type", "application/json; charset=utf-8");
+//   next();
+// });
+app.use(cors({
+  origin:'http://localhost:3000',
+  credentials :true
+}));
 app.use("/api/auth", routesAuth);
 app.use("/api/users", routesUsers);
 app.use("/api/comments", routesComments);
@@ -60,8 +57,5 @@ app.use("/api/infos", routesInfos);
 app.use("/api/conversations", routesConversations);
 app.use("/api/notifications", routesNotifications);
 app.use("/api/messenges", routesMessenges);
-app.use(express.static(path.join(__dirname, "/client/build")));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
+
 app.listen(process.env.PORT || 5500, () => console.log("listening on port " + process.env.PORT));
