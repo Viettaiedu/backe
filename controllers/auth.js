@@ -31,7 +31,7 @@ const login = (req,res) => {
         const token =  jwt.sign({id:result[0].id , email:result[0].email} , process.env.secret_key);
         const {password , ...info} = result[0];
         res.cookie('accessToken', token ,{
-            // httpOnly:true,
+            httpOnly:true,
         }).status(200).json({
             info:info ,
             token:token
