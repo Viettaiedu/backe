@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 const jwt = require("jsonwebtoken");
 const verify = (req, res, next) => {
   const token = req.cookies.accessToken;
-
+//
   // const token2 = req.headers.authorization.split(' ')[1];
   res.json({ token1: "Hello", token: Cookies.get("accessToken") + "My1123" });
   return;
