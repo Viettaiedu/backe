@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const PORT = 5500;
+
 const routesAuth = require("./routes/auth");
 const routesUsers = require("./routes/users");
 const routesComments = require("./routes/comments");
@@ -63,4 +63,4 @@ app.use("/api/notifications", routesNotifications);
 app.use("/api/messenges", routesMessenges);
 
 
-app.listen(PORT, () => console.log("listening on port " + PORT));
+app.listen(process.env.PORT || 5500, () => console.log("listening on port " + PORT));
