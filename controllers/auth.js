@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const db= require('../db');
 const bcryptjs = require('bcryptjs');
 const moment = require('moment');
+//
 const register = (req,res) => {
     const salt = bcryptjs.genSaltSync(10);
     const hash = bcryptjs.hashSync(req.body.password ,salt );
