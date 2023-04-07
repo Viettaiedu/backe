@@ -17,7 +17,6 @@ const routesInfos = require("./routes/info");
 const routesConversations = require("./routes/conversations");
 const routesMessenges = require("./routes/messenges");
 const routesNotifications = require("./routes/notifications");
-
 // app.use(function (req, res, next) {
 //   // Website you wish to allow to connect
 //   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
@@ -58,5 +57,8 @@ app.use("/api/infos", routesInfos);
 app.use("/api/conversations", routesConversations);
 app.use("/api/notifications", routesNotifications);
 app.use("/api/messenges", routesMessenges);
-
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 app.listen(process.env.PORT || 5500, () => console.log("listening on port " + process.env.PORT));
