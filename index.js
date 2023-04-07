@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const path = require('path');
+
 const routesAuth = require("./routes/auth");
 const routesUsers = require("./routes/users");
 const routesComments = require("./routes/comments");
@@ -58,8 +58,5 @@ app.use("/api/infos", routesInfos);
 app.use("/api/conversations", routesConversations);
 app.use("/api/notifications", routesNotifications);
 app.use("/api/messenges", routesMessenges);
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/build', 'index.html'));
-});
+
 app.listen(process.env.PORT || 5500, () => console.log("listening on port " + process.env.PORT));
