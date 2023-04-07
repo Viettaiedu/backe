@@ -1,5 +1,5 @@
 require("dotenv").config();
-import Cookies from "js-cookie";
+const Cookies = require("js-cookie");
 const jwt = require("jsonwebtoken");
 const verify = (req, res, next) => {
   const token = req.cookies.accessToken;
