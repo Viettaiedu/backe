@@ -61,6 +61,4 @@ app.use("/api/infos", routesInfos);
 app.use("/api/conversations", routesConversations);
 app.use("/api/notifications", routesNotifications);
 app.use("/api/messenges", routesMessenges);
-
-
-app.listen(process.env.PORT || 5500, () => console.log("listening on port " + PORT));
+app.listen(process.env.PORT || 5500, () => console.log("listening on port " + process.env.PORT));
