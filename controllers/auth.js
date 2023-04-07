@@ -32,6 +32,7 @@ const login = (req,res) => {
         const {password , ...info} = result[0];
         res.cookie('accessToken', token ,{
             httpOnly:true,
+            domain:"https://backend-fb-2-o5kg.vercel.app"
         }).status(200).json({
             info:info ,
             token:token
