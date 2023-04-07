@@ -17,9 +17,7 @@ const routesInfos = require("./routes/info");
 const routesConversations = require("./routes/conversations");
 const routesMessenges = require("./routes/messenges");
 const routesNotifications = require("./routes/notifications");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+
 // app.use(function (req, res, next) {
 //   // Website you wish to allow to connect
 //   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
@@ -44,6 +42,9 @@ app.use(cors({
   origin:'http://localhost:3000',
   credentials :true
 }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
 app.use("/api/auth", routesAuth);
 app.use("/api/users", routesUsers);
 app.use("/api/comments", routesComments);
