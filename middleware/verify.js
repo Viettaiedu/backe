@@ -5,7 +5,6 @@ const verify = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token , process.env.secret_key);
     req.userData = decodedToken;
-    res.json({"token :" : token ,headers : req.headers.authorization})
    return  next();
 }catch(err ) {
     res.status(500).json({
