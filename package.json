@@ -14,8 +14,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "node index.js"
   },
   "name": "backend",
   "version": "1.0.0",
@@ -26,5 +25,7 @@
   "description": "",
   "engines" : {
     "node" :"14.x"
-  }
+  },
+  "proxy":"http://localhost:5500"
+  
 }
