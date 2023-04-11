@@ -20,7 +20,7 @@ const routesMessenges = require("./routes/messenges");
 const routesNotifications = require("./routes/notifications");
 app.use(function (req, res, next) {
 
-  res.setHeader("Access-Control-Allow-Origin", "https://client-fb.vercel.app");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
 
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -38,8 +38,9 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(cors({
-  origin:'https://client-fb.vercel.app',
-  credentials :true
+  origin:'http://localhost:3000',
+  credentials :true,
+  preflightContinue : true
 }));
 //
 app.use(bodyParser.json());
