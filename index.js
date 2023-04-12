@@ -19,9 +19,7 @@ const routesConversations = require("./routes/conversations");
 const routesMessenges = require("./routes/messenges");
 const routesNotifications = require("./routes/notifications");
 app.use(function (req, res, next) {
-
-  res.setHeader("Access-Control-Allow-Origin", 'https://client-fb.vercel.app/');
-
+  res.setHeader("Access-Control-Allow-Origin", '*');
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
@@ -36,8 +34,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(cors({
-  origin:'https://client-fb.vercel.app/',
-  credentials :true,
+  origin:'*',
   preflightContinue : true
 }));
 //
