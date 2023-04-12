@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
+// update
 const routesAuth = require("./routes/auth");
 const routesUsers = require("./routes/users");
 const routesComments = require("./routes/comments");
@@ -26,12 +26,10 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
-
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, Content-Type, Accept, Authorization, X-Request-With"
   );
-
   res.setHeader("Access-Control-Allow-Credentials", true);
 
   res.setHeader("Content-Type", "application/json; charset=utf-8");
